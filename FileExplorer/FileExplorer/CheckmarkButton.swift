@@ -48,7 +48,11 @@ final class CheckmarkButton: UIButton {
         super.init(frame: frame)
         layer.addSublayer(shapeLayer)
         layer.masksToBounds = true
-        borderColor = ColorPallete.gray
+        if #available(iOS 10.0, *) {
+            borderColor = ColorPallete.gray
+        } else {
+            // Fallback on earlier versions
+        }
         isSelected = false
         addTarget(self, action: #selector(handleTouchUpInside), for: .touchUpInside)
     }
@@ -107,7 +111,11 @@ final class CheckmarkButton: UIButton {
         
         if selected {
             shapeLayer.animate(keyPath: KeyPath.strokeEnd, to: NSNumber(value: 1.0))
-            shapeLayer.animate(keyPath: KeyPath.backgroundColor, to: ColorPallete.blue.cgColor)
+            if #available(iOS 10.0, *) {
+                shapeLayer.animate(keyPath: KeyPath.backgroundColor, to: ColorPallete.blue.cgColor)
+            } else {
+                // Fallback on earlier versions
+            }
             borderColor = UIColor.white
         } else {
             CATransaction.begin()
@@ -115,7 +123,11 @@ final class CheckmarkButton: UIButton {
             shapeLayer.animate(keyPath: KeyPath.strokeEnd, to: NSNumber(value: 0.0), duration: 0.0)
             CATransaction.commit()
             shapeLayer.animate(keyPath: KeyPath.backgroundColor, to: UIColor.white.cgColor)
-            borderColor = ColorPallete.gray
+            if #available(iOS 10.0, *) {
+                borderColor = ColorPallete.gray
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 

@@ -103,7 +103,9 @@ final class LocalStorageFileService: FileService {
                                     deletedItems,
                                     itemsNotRemovedDueToFailure)
                 } else {
-                    completionBlock(.success(), deletedItems, itemsNotRemovedDueToFailure)
+                    let result = Result<Void>() { [weak self] in
+                    }
+                    completionBlock(result, deletedItems, itemsNotRemovedDueToFailure)
                 }
 
             }

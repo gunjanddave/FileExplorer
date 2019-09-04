@@ -103,7 +103,12 @@ public class VideoSpecificationProvider: FileSpecificationProvider {
     }
 
     public class func thumbnail(forItemAt url: URL, with size: CGSize) -> UIImage? {
-        return BorderDecorator(thumbnailGenerator: VideoThumbnailGenerator(url: url)).generate(size: size)
+        if #available(iOS 10.0, *) {
+            return BorderDecorator(thumbnailGenerator: VideoThumbnailGenerator(url: url)).generate(size: size)
+        } else {
+            // Fallback on earlier versions
+        }
+        return nil
     }
 
     public class func viewControllerForItem(at url: URL, data: Data?, attributes: FileAttributes) -> UIViewController {
@@ -139,7 +144,12 @@ public class ImageSpecificationProvider: FileSpecificationProvider {
     }
 
     public class func thumbnail(forItemAt url: URL, with size: CGSize) -> UIImage? {
-        return BorderDecorator(thumbnailGenerator: ImageThumbnailGenerator(url: url)).generate(size: size)
+        if #available(iOS 10.0, *) {
+            return BorderDecorator(thumbnailGenerator: ImageThumbnailGenerator(url: url)).generate(size: size)
+        } else {
+            // Fallback on earlier versions
+        }
+        return nil
     }
 
     public class func viewControllerForItem(at url: URL, data: Data?, attributes: FileAttributes) -> UIViewController {
@@ -156,7 +166,12 @@ public class PDFSpecificationProvider: FileSpecificationProvider {
     }
 
     public class func thumbnail(forItemAt url: URL, with size: CGSize) -> UIImage? {
-        return BorderDecorator(thumbnailGenerator: PDFThumbnailGenerator(url: url)).generate(size: size)
+        if #available(iOS 10.0, *) {
+            return BorderDecorator(thumbnailGenerator: PDFThumbnailGenerator(url: url)).generate(size: size)
+        } else {
+            // Fallback on earlier versions
+        }
+        return nil
     }
 
     public class func viewControllerForItem(at url: URL, data: Data?, attributes: FileAttributes) -> UIViewController {

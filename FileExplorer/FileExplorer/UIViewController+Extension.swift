@@ -39,7 +39,7 @@ extension UIViewController {
     func showLoadingIndicator() {
         guard self.activityIndicatorView == nil else { return }
         
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicatorView.color = .gray
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
@@ -96,9 +96,11 @@ extension UIViewController {
 extension UIViewController {
     func addContentChildViewController(_ content: UIViewController, insets: UIEdgeInsets = UIEdgeInsets.zero) {
         view.addSubview(content.view)
-        addChildViewController(content)
-        content.view.frame = UIEdgeInsetsInsetRect(view.bounds, insets)
+        addChild(content)
+        content.view.frame.inset(by: UIEdgeInsets(top: insets.top
+            , left: insets.left, bottom: insets.bottom, right: insets.right))
+//        content.view.frame = UIEdgeInsetsInsetRect(view.bounds, insets)
         content.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        content.didMove(toParentViewController: self)
+        content.didMove(toParent: self)
     }
 }

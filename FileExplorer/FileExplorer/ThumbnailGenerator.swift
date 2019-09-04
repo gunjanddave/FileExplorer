@@ -57,6 +57,7 @@ final class BorderDecorator: ThumbnailGenerator {
     private let thumbnailGenerator: ThumbnailGenerator
     private let borderWidth: CGFloat
 
+    @available(iOS 10.0, *)
     init(thumbnailGenerator: ThumbnailGenerator, color: UIColor = ColorPallete.gray, borderWidth: CGFloat = 1.0/UIScreen.main.scale) {
         self.color = color
         self.thumbnailGenerator = thumbnailGenerator
